@@ -3,6 +3,7 @@
 printing pascal's triangle
 """
 
+
 def pascal_triangle(n):
     """
     iterate throuhg rows and print items
@@ -19,5 +20,4 @@ def pascal_triangle(n):
             row.append(prv_row[j - 1] + prv_row[j])
         row.append(1)
         triangle.append(row)
-
     return triangle
