@@ -1,41 +1,24 @@
 #!/usr/bin/python3
+'''returns true if lockboxes can all be opened and false if not'''
 
 
-# def canUnlockAll(boxes):
-#     """_summary_push
+def join(list1, list2):
+    results = []
+    for numb in list2:
+        results += list1[numb]
+    return results
 
-#     Args:
-#         boxes (): locked boxes
 
-#     Returns:
-#         boxes: unlocked boxes
-#     """
-#     num_of_boxes = len(boxes)
-#     unlocked_boxes = [False] * num_of_boxes
-#     unlocked_boxes[0] = True
-
-#     stack = [0]
-
-#     while stack:
-#         box = stack.pop()
-
-#         for key in boxes[box]:
-#             if key < num_of_boxes and not unlocked_boxes[key]:
-#                 unlocked_boxes[key] = True
-#                 stack.append(key)
-
-#     return all(unlocked_boxes)
 def canUnlockAll(boxes):
-    """lock boxes function"""
-    num_boxes = len(boxes)
-    unlocked_boxes = [False] * num_boxes
-    unlocked_boxes[0] = True  # First box is unlocked
-
-    keys_stack = boxes[0]
-    while keys_stack:
-        key = keys_stack.pop()
-        if key < num_boxes and not unlocked_boxes[key]:
-            unlocked_boxes[key] = True
-            keys_stack.extend(boxes[key])
-
-    return all(unlocked_boxes)
+    '''returns true of locboxes can all be opened and false if not'''
+    index = 0
+    total = list(set(boxes[0]) | {0})
+    new = True
+    while new:
+        new = False
+        for j in join(boxes, total[index:]):
+            if j not in total:
+                total.append(j)
+                index += 1
+                new = True
+        return len(total) == len(boxes)
