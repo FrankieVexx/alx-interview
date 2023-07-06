@@ -22,3 +22,4 @@ def canUnlockAll(boxes):
                 index += 1
                 new = True
         return len(total) == len(boxes)
+    
